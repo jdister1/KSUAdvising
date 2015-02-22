@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    @*Set the viewport width to device width for mobile *@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewBag.Title - Welcome to Foundation</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    @Styles.Render("~/Content/foundation/css")
+    @RenderSection("head", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        /* Site Wide Styles */
+        #navbar {
+            margin-bottom: 30px;
+            border-bottom: 10px solid #F9B71B;
+        }
+        
+        .login_header {
+            color: white;
+            font-size: 2.5em;
+        }
+
+        /* Site wide foundation overrides */
+            
+        .icon-bar {
+            background-color: #132B8B;
+        }
+        .icon-bar > a:hover
+        {
+            background-color: #132B8B;
+        }
+
+</style>
+</head>
+<body>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/foundation")
+
+    <!-- Start of Layout Skeleton-->
+    <div id="navbar" class="icon-bar one-up">
+
+        <a id="home_button" class="item">
+            <span class="login_header">KSU Advising</span>
+        </a>
+    </div>
+    <div class="small-4 small-centered columns">
+        <form>
+            <fieldset>
+                <legend>Login</legend>
+                <!-- ADD CLASS ERROR TO DIVS TO SHOW THE PROPER ERRORS -->
+                <div class="row collapse postfix-radius">
+                    <div class="small-9 columns ">
+                        <input type="text" placeholder="Flashline ID">
+                        <!--<small class="error">Invalid Flashline ID</small>-->
+                    </div>
+                    <div class="small-3 columns">
+                        <span class="postfix">@@kent.edu</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="text" placeholder="Password">
+                    <!--<small class="error">Invalid Password</small>-->
+                </div>
+            </fieldset>
+            <a href="#" class="button success">Login</a>
+        </form>
+
+    </div>
+    <!-- End of layout skeleton -->
+
+    <script>
+        $(document).foundation();
+    </script>
+    @*Use the Scripts section to define page specific scripts*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,360 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@section Scripts {
+    <script type="text/JavaScript">
+        $(document).ready(function (){
+            //$.blockUI({
+            //               message: '<span class="arrival_message">Thanks, you have been added to the queue!</span>',
+            //           css: { backgroundColor: '#F9B71B'},
+            //    });
+
+            $("#test_sound_button").click(function () {
+                testAlert();
+            });
+
+            //show Home by Default
+            showPanel(0);
+
+            //attaching event handlers
+            $("#home_button").click(function () {
+                switchLayout(0);
+            });
+
+            $("#appointment_button").click(function () {
+                switchLayout(1);
+            });
+
+            $("#queue_button").click(function () {
+                switchLayout(2);
+            });
+
+            $("#walkin_button").click(function () {
+                switchLayout(3);
+            });
+
+        });
+
+        function testAlert() {
+            //resets the alert volume to zero
+            $("#alert_sound").prop("volume", 0);
+
+            //computes set volume based on slider
+            var alertVolume = $('#volumeSlider').attr('data-slider');
+            alertVolume = alertVolume / 100;
+
+            //sets comput volume
+            $("#alert_sound").prop("volume", alertVolume);
+            playAlert();
+        }
+
+        function playAlert() {
+            $("#alert_sound").trigger('play');
+        }
+
+        function switchLayout(buttonID) {
+            switch (buttonID) {
+                case 0:
+                    showPanel(0);
+                    break;
+                case 1:
+                    showPanel(1);
+                    break;
+                case 2:
+                    showPanel(2);
+                    break;
+                case 3:
+                    toggleAvailability();
+                    break;
+                default:
+                    //nothing
+            }
+        }
+
+        function showPanel(panel) {
+            //based on what integer is passed hide other panels and show correct one
+            var panels = ["#home_panel", "#appointment_schedule", "#walkin_queue"];
+            var buttons = ["#home_button i", "#appointment_button i", "#queue_button i"];
+            for (var i = 0; i < 3; ++i) {
+                if (panel != i) {
+                    $(panels[i]).css("display", "none");
+                    $(buttons[i]).removeClass("iconActive");
+                }
+                else {
+                    $(panels[i]).css("display", "block");
+                    $(buttons[i]).addClass("iconActive");
+                }
+            }
+        }
+
+        function toggleAvailability() {
+            var availableStatus = $("#walkin_button i");
+
+            //changes status button accordingly
+            if (availableStatus.hasClass("fi-foot")) {
+                availableStatus.removeClass("fi-foot");
+                availableStatus.addClass("fi-prohibited");
+                $.jGrowl("You are now available for walk-in appointments!", { life: 2500 });
+            }
+            else {
+                availableStatus.removeClass("fi-prohibited");
+                availableStatus.addClass("fi-foot");
+                $.jGrowl("You are no longer available for walk in appointments", { life: 2500 });
+            }
+
+            //change advisors status in db
+
+        }
+    </script>
+}
+
+    <style>
+        #test_sound_button {
+            background-color: #132B8B;
+        }
+
+        /* appointment panel styling */
+        #appointment_schedule{
+            background-color: #132B8B;
+            padding:10px;
+        }
+
+        .appointment_panel_x{
+            font-size: 2.5rem;
+        }
+        /*walkin queue overrides */
+        .accordion .accordion-navigation > a {
+            background-color: #132B8B;
+            color: white;
+        }
+
+        .accordion .accordion-navigation > a:hover{
+            background-color: #132B8B;
+            color: white;
+        }
+
+        .accordion .accordion-navigation.active > a, .accordion dd.active > a{
+            background-color: #132B8B;
+            color: white;
+        }
+        /* admin only section */
+        .button {
+                background-color:#F9B71B;   
+        }
+
+        .button:hover{
+            background-color:#F9B71B;
+        }
+    </style>
+
+
+    <!-- top nav -->
+    <div id="navbar" class="icon-bar four-up">
+
+        <a id="home_button" class="item">
+            <i class="fi-home iconActive"></i>
+        </a>
+        <a id="appointment_button" class="item">
+            <i class="fi-calendar"></i>
+        </a>
+        <a id="queue_button" class="item">
+            <i class="fi-torsos"></i>
+        </a>
+        <a id="walkin_button" class="item">
+            <i class="fi-foot"></i>
+        </a>
+        <!--<a id = "administrator_options" class = "item">
+          <i class = "fi-widget"></i>
+        </a>-->
+    </div>
+    <!-- end top nav -->
+
+    <div class="row">
+
+        <div id="home_panel" class="small-11 small-centered columns">
+            <fieldset>
+                <legend>Notification Settings</legend>
+
+                Popup for Scheduled Appointments Arrivals:
+                <div class="switch">
+                    <input id="scheduled_arrival_notification" type="checkbox">
+                    <label for="scheduled_arrival_notification"></label>
+                </div>
+                <br /><br />
+
+                Popup for Walk-in Arrivals:
+                <div class="switch">
+                    <input id="walkin_arrival_notification" type="checkbox">
+                    <label for="walkin_arrival_notification"></label>
+                </div>
+                <br /><br />
+
+                Alert Sound Volume:
+                <div class="row">
+
+                    <div class="small-10 medium-11 columns">
+                        <div id ="volumeSlider" class="range-slider" data-slider data-options="display_selector: #volumeOutput; step:10; ">
+                            <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                            <span class="range-slider-active-segment"></span>
+                        </div>
+                    </div>
+                    <div class="small-2 medium-1 columns">
+                        <span id="volumeOutput"></span>
+                    </div>
+
+                </div>
+                <a href="#" id="test_sound_button" class="button alert">Test Volume <i class="fi-sound"></i></a>
+                <audio id="alert_sound" src="~/Content/sounds/music_marimba_chord.wav"></audio>
+            </fieldset>
+        </div>
+
+        <div id="appointment_schedule" style="display:none;" class="large-11 large-centered columns">
+            <div class="panel">
+                <h4>John Doe</h4>
+                <p>
+                    <div class="row">
+                        <div class="large-6 columns">
+                            <div class="row visible-for-medium-up">
+                                <div class="panel">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a nibh ex. Suspendisse potenti. Etiam lorem mi, ornare non pretium sed, mattis eget massa.
+                                </div>
+                            </div>
+                            <div class="row hide-for-medium-up">
+                                only visible below medium
+                            </div>
+                        </div>
+                        <div class="large-6 columns">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Appointment Time</th>
+                                        <th>Arrival Time</th>
+                                        <th>Flashline ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>10:00am</td>
+                                        <td></td>
+                                        <td>jdoe1@kent.edu</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="large-8 columns">
+
+                            </div>
+                            <div class="large-4 columns">
+                                <i class="fi-x-circle appointment_panel_x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div class="panel">
+                <h4>Jane Doe</h4>
+                <p>
+                    <div class="row">
+                        <div class="small-6 columns">
+                            <div class="row visible-for-medium-up">
+                                <div class="panel">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a nibh ex. Suspendisse potenti. Etiam lorem mi, ornare non pretium sed, mattis eget massa.
+                                </div>
+                            </div>
+                            <div class="row hide-for-medium-up">
+                                only visible below medium
+                            </div>
+                        </div>
+                        <div class="small-6 columns">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Appointment Time</th>
+                                        <th>Arrival Time</th>
+                                        <th>Flashline ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>11:00am</td>
+                                        <td></td>
+                                        <td>janedoe1@kent.edu</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="small-8 columns">
+
+                            </div>
+                            <div class="small-4 columns">
+                                <i class="fi-x-circle appointment_panel_x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+
+        <div id="walkin_queue" style="display:none;" class="small-11 small-centered columns">
+            <dl class="sub-nav">
+                <dt>Filter:</dt>
+                <dd class="active"><a href="#">All</a></dd>
+                <dd><a href="#">Senior</a></dd>
+                <dd><a href="#">Freshman</a></dd>
+                <dd><a href="#">Internationa<l />a></dd>
+            </dl>
+            <ul class="accordion" data-accordion>
+                <li class="accordion-navigation">
+                    <a href="#student1_panel">John Doe</a>
+                    <div id="student1_panel" class="content active">
+                        Walk in information
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#student2_panel">Bobby Doe</a>
+                    <div id="student2_panel" class="content">
+                        Walk in information
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#student3_panel">Steve Doe</a>
+                    <div id="student3_panel" class="content">
+                        Walk in information
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- ADMIN ONLY PANEL -->
+        <div style="display:none;" id="admin_panel" class="small-11 small-centered columns">
+            <fieldset>
+                <legend>Administrative Settings</legend>
+
+                <a href="#" class="button" data-dropdown="drop">Minutes Allowed Late &raquo;</a>
+                <ul id="drop" class="tiny content f-dropdown" data-dropdown-content>
+                    <li><a href="#">0</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">10</a></li>
+                </ul>
+                <br />
+                Current Setting: <span class="label">5 Minutes</span>
+                <br /><br /><br />
+
+                Number of Walkins Allowed in Queue
+                <div class="row">
+
+                    <div class="small-10 medium-11 columns">
+                        <div class="range-slider" data-slider data-options="display_selector: #walkin_num_output; step:1;start: 1; end: 20; ">
+                            <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                            <span class="range-slider-active-segment"></span>
+                        </div>
+                    </div>
+                    <div class="small-2 medium-1 columns">
+                        <span id="walkin_num_output"></span>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+    </div>
+
+    <!-- end main wrap -->
+
+

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    @*Set the viewport width to device width for mobile *@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>KSU Advising</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    @Styles.Render("~/Content/foundation/css")
+    @Styles.Render("~/Content/foundation-icons/foundation-icons.css")
+    @Styles.Render("~/Content/jquery.jgrowl.css")
+    @RenderSection("head", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+    @section Scripts {
+    <script type="text/JavaScript">
+        $(document).ready(function () {
+            //updates on window resizing for responsive design
+            $(window).load(function () {
+                updateWindow();
+            })
+            .resize(function () {
+                updateWindow();
+            });
+
+            function updateWindow() {
+                //updates wrapper height based on window resizing
+                var height = document.documentElement.clientHeight;
+                $('#main_wrapper').css("min-height", height);
+            }
+        });
+    </script>
+
+    }
+    <style>
+        /* Site Wide Styles */
+        #navbar {
+            margin-bottom: 30px;
+            border-bottom: 10px solid #F9B71B;
+        }
+        
+        .login_header {
+            color: white;
+            font-size: 2.5em;
+        }
+
+        /* Site wide foundation overrides */
+        .iconActive{
+            color: #F9B71B !important;  
+        }
+        .icon-bar {
+            background-color: #132B8B;
+        }
+        .icon-bar > a:hover
+        {
+            background-color: #132B8B;
+        }
+
+        /*range slider and switches*/
+        .switch input:checked + label {
+            background: none repeat scroll 0% 0% #F9B71B;
+        }
+        .range-slider-handle:hover {
+            background: none repeat scroll 0% 0% #F9B71B;
+        }
+        .range-slider-handle {
+            background: none repeat scroll 0% 0% #F9B71B;
+        }
+        .range-slider-active-segment {
+            background: none repeat scroll 0% 0% #132B8B;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main_wrapper">
+    </div>
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/foundation")
+    @Scripts.Render("~/Scripts/jquery.jgrowl.js")
+    <script>
+        $(document).foundation();
+    </script>
+    @*Use the Scripts section to define page specific scripts*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>
