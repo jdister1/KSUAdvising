@@ -16,6 +16,9 @@ namespace KSUAdvising
     {
         protected void Application_Start()
         {
+
+            //registered for signalR
+            RouteTable.Routes.MapHubs();
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

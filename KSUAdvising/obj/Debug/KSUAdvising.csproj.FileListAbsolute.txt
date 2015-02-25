@@ -32,3 +32,12 @@ c:\users\joe\documents\visual studio 2013\Projects\KSUAdvising\KSUAdvising\bin\S
 c:\users\joe\documents\visual studio 2013\Projects\KSUAdvising\KSUAdvising\bin\System.Web.Routing.dll
 C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\EntityFramework.SqlServer.dll
 C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\EntityFramework.SqlServer.xml
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\Microsoft.AspNet.SignalR.Owin.dll
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\Owin.dll
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\Microsoft.AspNet.SignalR.Owin.xml
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\Microsoft.Owin.Host.SystemWeb.xml
