@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<div id="navbar" class="icon-bar one-up">
+
+    <a id="home_button" class="item">
+        <span class="login_header">KSU Advising</span>
+    </a>
+</div>
+
+<div id="no_appointment" class="large-4 large-centered columns">
+    <div class="panel">
+        <h3>You are late for your appointment!</h3>
+        <p>Please try signing up for the next available walk-in appointment, or click Go Schedule an Appointment to redirect to KSU's Advising site and reschedule</p>
+        <!-- <p>If you are here for a walk-in appointment, please click walk-in below. Otherwise click Go Schedule an Appointment to redirect to KSU's Advising site</p> -->
+        <!-- <p>Sorry, there are no more spots available in the walk-in queue today. Click Go Schedule an Appointment to redirect to KSU's Advising site</p> -->
+    </div>
+
+    <a href="#" class="button alert">Walk-In</a> <br />
+    <a href="#" class="button success">Go Schedule an Appointment</a>
+</div>
+
+<div style="display:none;" id="schedule_appointment" class="large-4 large-centered columns">
+        <form>
+            <fieldset>
+                <legend>Walk-In Sign Up</legend>
+                <div class="small-4 columns">
+                    <label for="right-label" class="right inline">Banner ID</label>
+                </div>
+                <div class="small-8 columns">
+                    <input type="text" id="right-label" placeholder="xxxxxxxxx">
+                    <a href="#" class="button tiny alert">Dont' Know</a>
+                </div>
+                <textarea placeholder="Breif Description"></textarea>
+            </fieldset>
+            <a href="#" class="button success">Submit</a>
+        </form>
+</div>
+
+
+<div style="display:none;" id="has_appointment" class="large-4 large-centered columns">
+        <div class="panel">
+            <h3> Thank You! </h3>
+            <i>Advisor Name</i> has been notified of your arrival and will be out shortly <br /><br />
+            <p>Click logout or you will be logged out automatically in 10 seconds</p><br />
+        </div>
+        <a href="#" class="button alert">Logout</a></a> <br />
+</div>
