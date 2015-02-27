@@ -12,5 +12,10 @@ namespace KSUAdvising.Hubs
         {
             Clients.All.addAppointmentArrivalNotification(name, message);
         }
+
+        public void WalkingArrival(string name, string message)
+        {
+            Clients.All.addWalkinArrivalNotifcation(name, message);
+        }
     }
 }

@@ -2,6 +2,22 @@
     ViewBag.Title = "Index";
 }
 
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.blockUI({
+                message: "<h1>Thank you, an advisor will be with you shortly.</h1>",
+                css: { backgroundColor: '#F9B71B'},
+                timeout: 2000
+            });
+        });
+    </script>
+}
+<style>
+    .studentButton{
+        background-color:#009DDB !important;
+    }
+</style>
 
 <div id="navbar" class="icon-bar one-up">
 
@@ -12,14 +28,15 @@
 
 <div id="no_appointment" class="large-4 large-centered columns">
     <div class="panel">
-        <h3>You are late for your appointment!</h3>
-        <p>Please try signing up for the next available walk-in appointment, or click Go Schedule an Appointment to redirect to KSU's Advising site and reschedule</p>
-        <!-- <p>If you are here for a walk-in appointment, please click walk-in below. Otherwise click Go Schedule an Appointment to redirect to KSU's Advising site</p> -->
+        @*<h3>You have no scheduled appointments today.</h3>*@
+        <h3>You have missed your appointment.</h3>
+        <p>Please try signing up for the next available walk-in appointment, or click E-mail a Link to recieve an E-mail with a URL to KSU's Advising website to schedule an appointment.</p>
+        @*<p>If you are here for a walk-in appointment, please click walk-in below. Otherwise click Go Schedule an Appointment to redirect to KSU's Advising site</p>*@
         <!-- <p>Sorry, there are no more spots available in the walk-in queue today. Click Go Schedule an Appointment to redirect to KSU's Advising site</p> -->
     </div>
 
-    <a href="#" class="button alert">Walk-In</a> <br />
-    <a href="#" class="button success">Go Schedule an Appointment</a>
+    <a href="#" class="studentButton button alert">Walk-In</a> <br />
+    <a href="#" class="studentButton button success">E-Mail a Link</a>
 </div>
 
 <div style="display:none;" id="schedule_appointment" class="large-4 large-centered columns">

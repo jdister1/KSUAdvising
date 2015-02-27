@@ -10,6 +10,11 @@
             //starts connection
             $.connection.hub.start();
 
+            //ataches an event handler for walkin arrivals
+            alertHubProx.client.addWalkinArrivalNotifcation = function (name, message) {
+                alert(name + message);
+            };
+
             //attaches an even handler for new arrival
             alertHubProx.client.addAppointmentArrivalNotification = function (name, message) {
                 $.blockUI({
@@ -19,6 +24,7 @@
                 });
                 //alert(name + "  " + message);
             };
+
 
             $("#test_sound_button").click(function () {
                 testAlert();
@@ -105,12 +111,12 @@
             if (availableStatus.hasClass("fi-foot")) {
                 availableStatus.removeClass("fi-foot");
                 availableStatus.addClass("fi-prohibited");
-                $.jGrowl("You are now available for walk-in appointments!", { life: 2500 });
+                $.jGrowl("You are now available for walk-in appointments!", { life: 2500,theme:'walkinAvailbility' });
             }
             else {
                 availableStatus.removeClass("fi-prohibited");
                 availableStatus.addClass("fi-foot");
-                $.jGrowl("You are no longer available for walk in appointments", { life: 2500 });
+                $.jGrowl("You are no longer available for walk in appointments", { life: 2500, theme: 'walkinAvailbility' });
             }
 
             //change advisors status in db
@@ -120,32 +126,45 @@
 }
 
 <style>
+    .walkinAvailbility{
+        background-color:#EAAB00 !important;
+        color: black;
+    }
     #test_sound_button {
         background-color: #132B8B;
     }
 
     /* appointment panel styling */
     #appointment_schedule {
-        background-color: #132B8B;
+        /*background-color: #132B8B;*/
         padding: 10px;
     }
 
     .appointment_panel_x {
         font-size: 2.5rem;
     }
+
+    .appointmentPanel{
+       border: 5px solid #002664;
+    }
+
+
     /*walkin queue overrides */
     .accordion .accordion-navigation > a {
-        background-color: #132B8B;
+        background-color: #002664;
+       border: 1px solid white;
         color: white;
     }
 
-        .accordion .accordion-navigation > a:hover {
-            background-color: #132B8B;
-            color: white;
-        }
+    .accordion .accordion-navigation > a:hover {
+        background-color: #002664;
+        border: 1px solid white;
+        color: white;
+    }
 
     .accordion .accordion-navigation.active > a, .accordion dd.active > a {
-        background-color: #132B8B;
+        background-color: #002664;
+        border: 1px solid white;
         color: white;
     }
     /* admin only section */
@@ -220,7 +239,7 @@
     </div>
 
     <div id="appointment_schedule" style="display:none;" class="large-11 large-centered columns">
-        <div class="panel">
+        <div class="panel appointmentPanel">
             <h4>John Doe</h4>
             <p>
                 <div class="row">
@@ -255,13 +274,15 @@
 
                         </div>
                         <div class="large-4 columns">
-                            <i class="fi-x-circle appointment_panel_x"></i>
+                            <span data-tooltip aria-haspopup="true" class="has-tip" title="No Show">
+                                <i class="fi-x-circle appointment_panel_x"></i>
+                                </span>
                         </div>
                     </div>
                 </div>
             </p>
         </div>
-        <div class="panel">
+        <div class="panel appointmentPanel">
             <h4>Jane Doe</h4>
             <p>
                 <div class="row">
@@ -296,7 +317,9 @@
 
                         </div>
                         <div class="small-4 columns">
-                            <i class="fi-x-circle appointment_panel_x"></i>
+                            <span data-tooltip aria-haspopup="true" class="has-tip" title="No Show">
+                                <i class="fi-x-circle appointment_panel_x"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -309,8 +332,7 @@
             <dt>Filter:</dt>
             <dd class="active"><a href="#">All</a></dd>
             <dd><a href="#">Senior</a></dd>
-            <dd><a href="#">Freshman</a></dd>
-            <dd><a href="#">Internationa<l />a></dd>
+            <dd><a href="#">International</a></dd>
         </dl>
         <ul class="accordion" data-accordion>
             <li class="accordion-navigation">

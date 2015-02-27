@@ -87,3 +87,4 @@ C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\S
 C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\System.Web.WebPages.Razor.xml
 C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\obj\Debug\KSUAdvising.dll
 C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\obj\Debug\KSUAdvising.pdb
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\obj\Debug\KSUAdvising.csprojResolveAssemblyReference.cache
