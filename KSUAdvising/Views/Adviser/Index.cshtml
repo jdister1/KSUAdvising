@@ -1,4 +1,5 @@
-﻿@{
+﻿@model KSUAdvising.Models.AdviserViewModel
+@{
     ViewBag.Title = "Index";
 }
 @section Scripts {
@@ -33,7 +34,7 @@
             //show Home by Default
             showPanel(0);
 
-            //attaching event handlers
+            //attaching event handlers to top buttons to show/hide correct panels
             $("#home_button").click(function () {
                 switchLayout(0);
             });
@@ -135,20 +136,23 @@
     }
 
     /* appointment panel styling */
-    #appointment_schedule {
-        /*background-color: #132B8B;*/
-        padding: 10px;
-    }
 
     .appointment_panel_x {
-        font-size: 2.5rem;
+        /*font-size: 2.5rem;*/
     }
 
     .appointmentPanel{
        border: 5px solid #002664;
     }
-
-
+    .appointmentPanel > .title{
+        background-color:#F9B71B;
+    }
+     .appointmentPanel > .cta-button > a{
+        background-color: #002664;    
+     }
+    .appointmentPanel > .price {
+        font-size: 1em;
+    }
     /*walkin queue overrides */
     .accordion .accordion-navigation > a {
         background-color: #002664;
@@ -207,7 +211,13 @@
 
             Popup for Scheduled Appointments Arrivals:
             <div class="switch">
-                <input id="scheduled_arrival_notification" type="checkbox">
+                @if (Model.Adviser.ShowApptNotification) { 
+                    <input id="scheduled_arrival_notification" type="checkbox" checked />
+                }
+                else
+                {
+                    <input id="scheduled_arrival_notification" type="checkbox" />
+                }
                 <label for="scheduled_arrival_notification"></label>
             </div>
             <br /><br />
@@ -235,97 +245,34 @@
             </div>
             <a href="#" id="test_sound_button" class="button alert">Test Volume <i class="fi-sound"></i></a>
             <audio id="alert_sound" src="~/Content/sounds/music_marimba_chord.wav"></audio>
+
+            <a href="#" id="save_changes_button" class="button alert">Save Changes<i class="fi-lock"></i></a>
         </fieldset>
     </div>
-
-    <div id="appointment_schedule" style="display:none;" class="large-11 large-centered columns">
-        <div class="panel appointmentPanel">
-            <h4>John Doe</h4>
-            <p>
-                <div class="row">
-                    <div class="large-6 columns">
-                        <div class="row visible-for-medium-up">
-                            <div class="panel">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a nibh ex. Suspendisse potenti. Etiam lorem mi, ornare non pretium sed, mattis eget massa.
-                            </div>
-                        </div>
-                        <div class="row hide-for-medium-up">
-                            only visible below medium
-                        </div>
-                    </div>
-                    <div class="large-6 columns">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Appointment Time</th>
-                                    <th>Arrival Time</th>
-                                    <th>Flashline ID</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>10:00am</td>
-                                    <td></td>
-                                    <td>jdoe1@kent.edu</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="large-8 columns">
-
-                        </div>
-                        <div class="large-4 columns">
-                            <span data-tooltip aria-haspopup="true" class="has-tip" title="No Show">
-                                <i class="fi-x-circle appointment_panel_x"></i>
-                                </span>
-                        </div>
-                    </div>
-                </div>
-            </p>
-        </div>
-        <div class="panel appointmentPanel">
-            <h4>Jane Doe</h4>
-            <p>
-                <div class="row">
-                    <div class="small-6 columns">
-                        <div class="row visible-for-medium-up">
-                            <div class="panel">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a nibh ex. Suspendisse potenti. Etiam lorem mi, ornare non pretium sed, mattis eget massa.
-                            </div>
-                        </div>
-                        <div class="row hide-for-medium-up">
-                            only visible below medium
-                        </div>
-                    </div>
-                    <div class="small-6 columns">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Appointment Time</th>
-                                    <th>Arrival Time</th>
-                                    <th>Flashline ID</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>11:00am</td>
-                                    <td></td>
-                                    <td>janedoe1@kent.edu</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="small-8 columns">
-
-                        </div>
-                        <div class="small-4 columns">
-                            <span data-tooltip aria-haspopup="true" class="has-tip" title="No Show">
-                                <i class="fi-x-circle appointment_panel_x"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </p>
-        </div>
+    <div id="appointment_schedule" style="display:none;" class="medium-8 text-center medium-centered columns">
+        <ul class="pricing-table appointmentPanel">
+            <li class="title">Jane Doe</li>
+            <li class="price">jdoe@kent.edu</li>
+            <li class="bullet-item">Appointment Time</li>
+            <li class="bullet-item">Arrival Time</li>
+            <li class="cta-button"><a class="button" href="#">No Show</a></li>
+        </ul>
+        <ul class="pricing-table appointmentPanel">
+            <li class="title">Bobby Doe</li>
+            <li class="price">bdoe@kent.edu</li>
+            <li class="bullet-item">Appointment Time</li>
+            <li class="bullet-item">Arrival Time</li>
+            <li class="cta-button"><a class="button" href="#">No Show</a></li>
+        </ul>
+        <ul class="pricing-table appointmentPanel">
+            <li class="title">John Doe</li>
+            <li class="price">jdoe2@kent.edu</li>
+            <li class="bullet-item">Appointment Time</li>
+            <li class="bullet-item">Arrival Time</li>
+            <li class="cta-button"><a class="button" href="#">No Show</a></li>
+        </ul>
     </div>
+
 
     <div id="walkin_queue" style="display:none;" class="small-11 small-centered columns">
         <dl class="sub-nav">

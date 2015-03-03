@@ -9,20 +9,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_PublishTargetUrl>C:\Users\joe\Documents\programming\deployment</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="Advising.sqlite">
+      <publishTime>03/02/2015 16:17:20</publishTime>
+    </File>
     <File Include="App_Readme/Foundation for sites/readme.md">
       <publishTime>02/21/2015 00:58:35</publishTime>
+    </File>
+    <File Include="bin/Advising.sqlite">
+      <publishTime>03/02/2015 16:17:20</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>02/21/2015 00:48:47</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>02/26/2015 10:50:35</publishTime>
+      <publishTime>03/02/2015 16:13:38</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>02/22/2015 13:20:34</publishTime>
+      <publishTime>03/02/2015 16:13:38</publishTime>
     </File>
     <File Include="bin/KSUAdvising.dll">
-      <publishTime>02/27/2015 00:27:28</publishTime>
+      <publishTime>03/03/2015 11:34:21</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
       <publishTime>02/22/2015 14:07:43</publishTime>
@@ -47,6 +53,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>02/22/2015 14:07:43</publishTime>
+    </File>
+    <File Include="bin/System.Data.SQLite.dll">
+      <publishTime>03/02/2015 16:13:39</publishTime>
+    </File>
+    <File Include="bin/System.Data.SQLite.EF6.dll">
+      <publishTime>03/02/2015 16:13:39</publishTime>
+    </File>
+    <File Include="bin/System.Data.SQLite.Linq.dll">
+      <publishTime>03/02/2015 16:13:37</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
       <publishTime>07/10/2012 13:07:38</publishTime>
@@ -307,7 +322,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:48:27</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>02/26/2015 10:50:36</publishTime>
+      <publishTime>03/02/2015 18:35:13</publishTime>
     </File>
     <File Include="Scripts/foundation/fastclick.js">
       <publishTime>02/21/2015 00:58:30</publishTime>
@@ -427,7 +442,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:48:43</publishTime>
     </File>
     <File Include="Views/Adviser/Index.cshtml">
-      <publishTime>02/26/2015 23:48:17</publishTime>
+      <publishTime>03/03/2015 11:21:28</publishTime>
     </File>
     <File Include="Views/Advisor/Index.cshtml">
       <publishTime>02/24/2015 20:23:57</publishTime>
@@ -436,7 +451,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:58:34</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>02/26/2015 22:48:27</publishTime>
+      <publishTime>03/03/2015 11:19:22</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/21/2015 00:48:27</publishTime>
@@ -445,7 +460,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/26/2015 22:36:05</publishTime>
     </File>
     <File Include="Views/Student/Index.cshtml">
-      <publishTime>02/26/2015 23:45:22</publishTime>
+      <publishTime>03/03/2015 09:58:50</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>02/21/2015 00:48:27</publishTime>
@@ -454,7 +469,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:48:27</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/27/2015 00:27:28</publishTime>
+      <publishTime>03/03/2015 11:34:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

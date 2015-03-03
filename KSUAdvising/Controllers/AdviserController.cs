@@ -11,19 +11,25 @@ namespace KSUAdvising.Controllers
     {
         //
         // GET: /Advisor/
-        //AdvisingDBContext context = new AdvisingDBContext();
+        AdvisingDBContext context = new AdvisingDBContext();
+        Adviser LoggedInUser = new Adviser();
         public ActionResult Index()
         {
-            //Adviser firstAdviser = new Adviser();
-            //firstAdviser.AdvisorID = 123;
-            //firstAdviser.FirstName = "Joe";
-            //firstAdviser.LastName = "Dister";
-            //context.Advisers.Add(firstAdviser);
+            
+            //if session data is empty redirect to logins creen
+            if(Session["LoggedInAdviser"] == null)
+                RedirectToAction("Index","Login");
 
-            //context.SaveChanges();
+            //gets flashlineID from temp data from login controller
+            LoggedInUser.FlashlineID = Session["LoggedInAdviser"].ToString();
+            LoggedInUser = context.Advisers.FirstOrDefault(a => a.FlashlineID == LoggedInUser.FlashlineID);
+            
+            AdviserViewModel AdviserVM = new AdviserViewModel();
+            //populates view model with adviser information
+            AdviserVM.Adviser = LoggedInUser;
+            AdviserVM.CollegeSetting = context.CollegeSettings.FirstOrDefault(c => c.CollegeID == AdviserVM.Adviser.CollegeID);
 
-            //List<Adviser> advisers = context.Advisers.ToList();
-            return View();
+            return View(AdviserVM);
         }
 
     }

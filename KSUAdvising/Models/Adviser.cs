@@ -12,8 +12,20 @@ namespace KSUAdvising.Models
     public class Adviser
     {
         [Key]
-        public int AdvisorID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int BannerID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FlashlineID { get; set; }
+        public bool ShowApptNotification { get; set; }
+        public bool ShowWalkinNotification { get; set; }
+        public int NotificationVolume { get; set; }
+        public int MinuteAllowedLate { get; set; }
+        public bool WalkinAdviser { get; set; }
+        public int CollegeID { get; set; }
+
+        public virtual CollegeSetting CollegeSetting{ get; set; }
+
+
     }
 }
