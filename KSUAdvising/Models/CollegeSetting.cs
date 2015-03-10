@@ -22,6 +22,7 @@ namespace KSUAdvising.Models
 
         public virtual ICollection<Adviser> Advisers{ get; set; }
         public virtual ICollection<Admin> Admins{ get; set; }
+        public virtual ICollection<WalkinQueue> Walkins { get; set; }
 
     }
 }

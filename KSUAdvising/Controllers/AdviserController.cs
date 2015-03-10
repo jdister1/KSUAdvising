@@ -23,13 +23,47 @@ namespace KSUAdvising.Controllers
             //gets flashlineID from temp data from login controller
             LoggedInUser.FlashlineID = Session["LoggedInAdviser"].ToString();
             LoggedInUser = context.Advisers.FirstOrDefault(a => a.FlashlineID == LoggedInUser.FlashlineID);
+
+            //sets avaibility to none on login
+            LoggedInUser.WalkinAdviser = false;
+            context.SaveChanges();
             
             AdviserViewModel AdviserVM = new AdviserViewModel();
             //populates view model with adviser information
             AdviserVM.Adviser = LoggedInUser;
             AdviserVM.CollegeSetting = context.CollegeSettings.FirstOrDefault(c => c.CollegeID == AdviserVM.Adviser.CollegeID);
 
+            //populates view model with existing walkins in queue before login
+            AdviserVM.currentWalkinQueueFlashline = context.WalkinQueue.Select(w => w.FlashlineID).ToList();
+
             return View(AdviserVM);
+        }
+
+        [HttpPost]
+        public void UpdateStatus(string adviserFlashlineID, bool isAvailable)
+        {
+            var changeAdviser = context.Advisers.SingleOrDefault(a => a.FlashlineID == adviserFlashlineID);
+            changeAdviser.WalkinAdviser = isAvailable;
+            context.SaveChanges();
+
+        }
+
+        [HttpPost]
+        public void UpdateSettings(string adviserFlashlineID, bool schedAlert, bool walkinAlert, int volumeAlert)
+        {
+            var changeAdviser = context.Advisers.SingleOrDefault(a => a.FlashlineID == adviserFlashlineID);
+            changeAdviser.ShowApptNotification = schedAlert;
+            changeAdviser.ShowWalkinNotification = walkinAlert;
+            changeAdviser.NotificationVolume = volumeAlert;
+            context.SaveChanges();
+        }
+
+        [HttpPost]
+        public void RemoveStudentFromWalkin(string studentFlashlineID)
+        {
+            var removeWalkin = context.WalkinQueue.SingleOrDefault(w => w.FlashlineID == studentFlashlineID);
+            context.WalkinQueue.Remove(removeWalkin);
+            context.SaveChanges();
         }
 
     }

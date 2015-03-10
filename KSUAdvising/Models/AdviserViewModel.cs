@@ -9,5 +9,6 @@ namespace KSUAdvising.Models
     {
         public Adviser Adviser { get; set; }
         public CollegeSetting CollegeSetting { get; set; }
+        public List<String> currentWalkinQueueFlashline { get; set; }
     }
 }

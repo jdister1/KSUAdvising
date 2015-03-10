@@ -153,6 +153,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdministrativeAssistantController.cs" />
     <Compile Include="Controllers\AdviserController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -163,11 +164,13 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AdministrativeAssistant.cs" />
+    <Compile Include="Models\AdministrativeAssistantViewModel.cs" />
     <Compile Include="Models\Adviser.cs" />
     <Compile Include="Models\AdviserViewModel.cs" />
     <Compile Include="Models\AdvisingDBContext.cs" />
     <Compile Include="Models\CollegeSetting.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\StudentViewModel.cs" />
     <Compile Include="Models\WalkinQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -301,6 +304,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Adviser\Index.cshtml" />
+    <Content Include="Views\AdministrativeAssistant\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

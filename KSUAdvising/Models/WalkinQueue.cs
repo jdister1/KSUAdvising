@@ -13,9 +13,9 @@ namespace KSUAdvising.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int BannerID { get; set; }
+        public string FlashlineID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FlashlineID { get; set; }
+        public virtual CollegeSetting CollegeSetting { get; set; }
     }
 }

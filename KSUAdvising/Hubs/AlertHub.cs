@@ -13,9 +13,23 @@ namespace KSUAdvising.Hubs
             Clients.All.addAppointmentArrivalNotification(name, message);
         }
 
-        public void WalkingArrival(string name, string message)
+        public void StudentInQueue(string name, string message)
         {
-            Clients.All.addWalkinArrivalNotifcation(name, message);
+            Clients.All.addStudentInQueue(name, message);
+        }
+
+        public void StudentOutQueue(string name, string message)
+        {
+            Clients.All.removeStudentFromQueue(name, message);
+        }
+
+        public void AdviserInQueue(string name, string message)
+        {
+            Clients.All.addAdviserInQueue(name, message);
+        }
+        public void AdviserOutQueue(string name, string message)
+        {
+            Clients.All.removeAdviserFromQueue(name, message);
         }
     }
 }

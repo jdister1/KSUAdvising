@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,6 +21,9 @@ namespace KSUAdvising.Controllers
         {
             //seeds data of some colleges and some advisors in case data store changes
            //seedData();
+
+            //resets the logged in student
+            Session["LoggedInStudent"] = null;
 
             //view model
             LoginViewModel lvm = new LoginViewModel();
@@ -91,6 +96,55 @@ namespace KSUAdvising.Controllers
             Session["collegeID"] = collegeID;
             return RedirectToAction("Index", "Login");
         }
+
+        public ActionResult AddStudentToQueue()
+        {
+            var studentFlashlineID = (string)Session["LoggedInStudent"];
+            var collegeID = (int)Session["collegeID"];
+            WalkinQueue newWalkin = new WalkinQueue();
+            newWalkin.FlashlineID = studentFlashlineID;
+            newWalkin.CollegeSetting = context.CollegeSettings.SingleOrDefault(c=> c.CollegeID == collegeID);
+            context.WalkinQueue.Add(newWalkin);
+            context.SaveChanges();
+
+            return RedirectToAction("Index", "Login");
+        }
+
+        public ActionResult EmailLink()
+        {
+            var studentFlashlineID = Session["LoggedInStudent"];
+            string toEmail = studentFlashlineID + "@kent.edu";
+            sendEmail(toEmail);
+            return RedirectToAction("Index", "Login");
+        }
+
+        #region EmailSettings
+        private void sendEmail(string toEmail)
+        {
+            MailMessage mailMessage = new MailMessage();
+
+            mailMessage.From = new MailAddress("joedister@gmail.com");
+            mailMessage.Subject = "Advising Appointment Link";
+            mailMessage.Body = "Here is the link to schedule and advising appointment!";
+            mailMessage.To.Add(new MailAddress(toEmail));
+
+            //create smtp client
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+
+            //network credentials
+            smtp.EnableSsl = true;
+            NetworkCredential netCred = new NetworkCredential();
+            netCred.UserName = "team3softwareintegration@gmail.com";
+            netCred.Password = "team3password";
+
+
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = netCred;
+            smtp.Port = 587;
+            smtp.Send(mailMessage);
+        }
+        #endregion
 
         #region seedingDatabase
         private void seedData()
