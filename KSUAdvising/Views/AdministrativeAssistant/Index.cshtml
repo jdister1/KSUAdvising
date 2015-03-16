@@ -23,12 +23,15 @@
                 removeAdviserQueue(name);
             }
 
-            //attaches an event handler for students in and out of walkin queue
+            //attaches an event handler for students in,out, and returned towalkin queue
             alertHubProx.client.addStudentInQueue = function (name, message) {
                 $.jGrowl(name + " " + message, { life: 2500, theme: 'walkinAvailibility' });
                 addStudentToQueue(name);
             };
-
+            alertHubProx.client.returnStudentToQueue = function(name, message){
+                $.jGrowl(name + " " + message, { life: 2500, theme: 'walkinAvailibility' });
+                addStudentToQueue(name);
+            }
             alertHubProx.client.removeStudentFromQueue = function (name, message) {
                 $.jGrowl(name + " " + message, { life: 2500, theme: 'walkinAvailibility' });
                 removeStudentQueue(name);

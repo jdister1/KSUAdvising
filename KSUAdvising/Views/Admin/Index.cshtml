@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@section Scripts {
+
+<script type="text/JavaScript">
+
+    $(document).ready(function () {
+        //show Home by Default
+        showPanel(0);
+
+        //attaching event handlers to top buttons to show/hide correct panels
+        $("#home_button").click(function () {
+            switchLayout(0);
+        });
+
+        $("#college_settings_button").click(function () {
+            switchLayout(1);
+        });
+
+        $("#adviser_queue_button").click(function () {
+            switchLayout(2);
+        });
+
+        $("#user_add_button").click(function () {
+            switchLayout(3);
+        });
+
+    });
+
+    //************************************************************************
+    //CODE FOR UPDATING THE LAYOUT
+    function switchLayout(buttonID) {
+        switch (buttonID) {
+            case 0:
+                showPanel(0);
+                break;
+            case 1:
+                showPanel(1);
+                break;
+            case 2:
+                showPanel(2);
+                break;
+            case 3:
+                showPanel(3);
+                break;
+            default:
+                //nothing
+        }
+    }
+
+    function showPanel(panel) {
+        //based on what integer is passed hide other panels and show correct one
+        var panels = ["#home_panel", "#college_settings_panel", "#adviser_queue_panel", "#user_add_panel"];
+        var buttons = ["#home_button i", "#college_settings_button i", "#adviser_queue_button i", "#user_add_button i"];
+        for (var i = 0; i < 4; ++i) {
+            if (panel != i) {
+                $(panels[i]).css("display", "none");
+                $(buttons[i]).removeClass("iconActive");
+            }
+            else {
+                $(panels[i]).css("display", "block");
+                $(buttons[i]).addClass("iconActive");
+            }
+        }
+    }
+    //************************************************************************
+
+</script>
+}
+<div id="navbar" class="icon-bar four-up">
+    <a id="home_button" class="item">
+        <i class="fi-home iconActive"></i>
+    </a>
+    <a id="college_settings_button" class="item">
+        <i class="fi-wrench"></i>
+    </a>
+    <a id="adviser_queue_button" class="item">
+        <i class="fi-torso-business"></i>
+    </a>
+    <a id="user_add_button" class="item">
+        <i class="fi-folder-add"></i>
+    </a>
+</div>
+
+<div class="row">
+    
+    <div id="home_panel" class="small-11 small-centered columns">
+        home panel
+    </div>
+
+    <div id="college_settings_panel" class="small-11 small-centered columns">
+        Settings specific to the college the admin is associated with
+    </div>
+    
+    <div id="adviser_queue_panel" style="display:none;" class="small-11 small-centered columns">
+        Adviser queue panel
+    </div>
+
+    <div id="user_add_panel" style="display:none;" class="small-11 small-centered columns">
+        Adding users panel
+    </div>
+
+    </div>

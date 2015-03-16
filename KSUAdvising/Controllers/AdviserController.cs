@@ -33,6 +33,10 @@ namespace KSUAdvising.Controllers
             AdviserVM.Adviser = LoggedInUser;
             AdviserVM.CollegeSetting = context.CollegeSettings.FirstOrDefault(c => c.CollegeID == AdviserVM.Adviser.CollegeID);
 
+            //checks if adviser is also admin 
+            //AdviserVM.isAdmin      if(context.Admins.FirstOrDefault(ad => ad.BannerID == LoggedInUser.BannerID))
+
+
             //populates view model with existing walkins in queue before login
             AdviserVM.currentWalkinQueueFlashline = context.WalkinQueue.Select(w => w.FlashlineID).ToList();
 
@@ -63,6 +67,17 @@ namespace KSUAdvising.Controllers
         {
             var removeWalkin = context.WalkinQueue.SingleOrDefault(w => w.FlashlineID == studentFlashlineID);
             context.WalkinQueue.Remove(removeWalkin);
+            context.SaveChanges();
+        }
+
+        [HttpPost]
+        public void ReturnStudentToQueue(string studentFlashlineID)
+        {
+            var collegeID = (int)Session["collegeID"];
+            WalkinQueue newWalkin = new WalkinQueue();
+            newWalkin.FlashlineID = studentFlashlineID;
+            newWalkin.CollegeSetting = context.CollegeSettings.SingleOrDefault(c => c.CollegeID == collegeID);
+            context.WalkinQueue.Add(newWalkin);
             context.SaveChanges();
         }
 

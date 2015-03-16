@@ -1,11 +1,13 @@
 ﻿using KSUAdvising.Models;
 using System;
 using System.Collections.Generic;
+using RestSharp;
 using System.Linq;
 using System.Net.Mail;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace KSUAdvising.Controllers
 {
@@ -17,10 +19,11 @@ namespace KSUAdvising.Controllers
         // GET: /Login/
         AdvisingDBContext context = new AdvisingDBContext();
 
+
         public ActionResult Index(int ?colInp,bool ?isValidInp)
         {
             //seeds data of some colleges and some advisors in case data store changes
-           //seedData();
+            //seedData();
 
             //resets the logged in student
             Session["LoggedInStudent"] = null;
@@ -60,17 +63,25 @@ namespace KSUAdvising.Controllers
             return View(lvm);
         }
 
+        [HttpGet]
         public ActionResult Authenticate(string userName,string password)
         {
             //send request to web service
-            var isValidLogin = true;
+            string requestText = "/Authenticate?flashlineID=" + userName + "&password=" + password;
+            var client = new RestClient("http://ssdev-01.kent.edu/KSUAdvising_WebServices/api/AdvisingApi");
+            var request = new RestRequest(requestText, Method.POST);
+            IRestResponse response = client.Execute(request);
+
+            //checks response to see if value login
+            var isValidLogin = (response.Content == "false") ? false : true;
+
+            //for testing purposes i am the only admin assisitant in the db
+            if (userName == "jdister1")
+                isValidLogin = true;
 
             if (isValidLogin)
             {
                 
-                //gets back some user information (we were given username at login so using that right now) 
-                //var flashlineID = "jdrake";
-
                 //looks for username in advisor table
                 var user = context.Advisers.FirstOrDefault(a => a.FlashlineID == userName);
 
@@ -79,11 +90,19 @@ namespace KSUAdvising.Controllers
                     Session["LoggedInAdviser"] = userName;
                     return RedirectToAction("Index", "Adviser");
                 }
-                else
+
+                //looks for username in administrative assistant table
+                var userAdAs = context.AdminstrativeAssistants.FirstOrDefault(ad => ad.FlashlineID == userName);
+                if (userAdAs != null)
                 {
-                    Session["LoggedInStudent"] = userName;
-                    return RedirectToAction("Index", "Student");
+                    Session["LoggedInAdminAssisit"] = userName;
+                    return RedirectToAction("Index", "AdministrativeAssistant");
                 }
+
+                //if authenticated and no prior check matched, it is a student
+                Session["LoggedInStudent"] = userName;
+                return RedirectToAction("Index", "Student");
+                
             }
             else //send error back to view by calling index method again
             {
@@ -151,6 +170,7 @@ namespace KSUAdvising.Controllers
         {
             //seedColleges();
             //seedAdvisers();
+            //seedAdminAssisitants();
         }
         private void seedColleges()
         {
@@ -201,6 +221,13 @@ namespace KSUAdvising.Controllers
             context.SaveChanges();
         }
 
+        private void seedAdminAssisitants()
+        {
+            AdministrativeAssistant jdister1 = new AdministrativeAssistant() { BannerID = 26, FirstName = "Joe", LastName = "Dister", FlashlineID = "jdister1" };
+            context.AdminstrativeAssistants.Add(jdister1);
+
+            context.SaveChanges();
+        }
         #endregion
     }
 }

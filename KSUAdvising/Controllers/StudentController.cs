@@ -25,9 +25,6 @@ namespace KSUAdvising.Controllers
             //**Will need to get adviser name as well to (1) send appointment and (2) see how early/late they allow people of college allows
             //advisers to set this. Also will get students full name from appointment data
             StudentVM.hasAppointment = false;
-            StudentVM.studentName = "Joe Dister";
-            StudentVM.adviserFlashlineID = "jdrake";
-            StudentVM.adviserName = "Josh Drake";
 
             //uses collegeID to see if they are within time frame to showup for appointment if they have one
             var collegeID = (int)Session["collegeID"];

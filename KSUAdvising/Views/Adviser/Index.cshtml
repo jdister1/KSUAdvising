@@ -15,7 +15,11 @@
 
 
 
-
+        //attaches event handler for student returned to queue
+        alertHubProx.client.returnStudentToQueue = function(name, message){
+            $.jGrowl(name + " " + message, { life: 2500, theme: 'walkinAvailibility' });
+            addStudentQueue(name);
+        }
 
         //attaches an even handler for new arrival
         alertHubProx.client.addStudentInQueue = function (name, message) {
@@ -186,16 +190,16 @@
         var availableStatus = $("#walkin_button i");
 
         //changes status button accordingly
-        if (availableStatus.hasClass("fi-foot")) {
+        if (availableStatus.hasClass("inactive_foot")) {
             updateWalkinAdviser(true);
-            availableStatus.removeClass("fi-foot");
-            availableStatus.addClass("fi-prohibited");
+            availableStatus.removeClass("inactive_foot");
+            availableStatus.addClass("active_foot");
             $.jGrowl("You are now available for walk-in appointments!", { life: 2500,theme:'walkinAvailibility' });
         }
         else {
             updateWalkinAdviser(false);
-            availableStatus.removeClass("fi-prohibited");
-            availableStatus.addClass("fi-foot");
+            availableStatus.removeClass("active_foot");
+            availableStatus.addClass("inactive_foot");
             $.jGrowl("You are no longer available for walk in appointments", { life: 2500, theme: 'walkinAvailibility' });
         }
 
@@ -241,6 +245,7 @@
         function addStudentQueue(flashlineID) {
             var liText = "<li class='accordion-navigation' id='li_"+flashlineID+"'><a>"+flashlineID+"<i class='fi-checkbox right'></i></a></li>";
             $("#walkin_student_queue_ul").append(liText);
+            
             //attaches event handler for removing student walkin
             $(".fi-checkbox").click(function(){
                 removeStudentQueue($(this).parent().text());
@@ -257,20 +262,56 @@
 
             //ajax call to remove from database table
             var url = '@Url.Action("RemoveStudentFromWalkin")';
-        $.ajax(
-        {
-            url: url,
-            type: 'POST',
-            data: {'studentFlashlineID': flashlineID},
-            success: function (data) {
-                $.jGrowl("You have successfully grabbed "+flashlineID+" from the queue", { life: 2500, theme: 'walkinAvailibility' });
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
+            $.ajax(
+            {
+                url: url,
+                type: 'POST',
+                data: {'studentFlashlineID': flashlineID},
+                success: function (data) {
+                    $.jGrowl("You have successfully grabbed "+flashlineID+" from the queue", { life: 2500, theme: 'walkinAvailibility' });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
 
-            }
-        });
+                }
+            });
 
-    }
+            //add div to calendar in case you need to put back
+            var ulText = "<ul id='ul_"+flashlineID+"' class='pricing-table walkinPanel'><li class='title'>"+flashlineID+"@@kent.edu<i class='fi-trash right'></i></li></ul>";
+            $("#grabbed_walkin_appointments").append(ulText);
+
+            //add handler to trash can on div
+            $(".fi-trash").click(function(){
+                returnStudentToQueue($(this).parent().text());
+            });
+        }
+
+        function returnStudentToQueue(flashlineID){
+            //works with flashlind id containing email 
+            String(flashlineID);
+            var positionOfAt = flashlineID.lastIndexOf("@@");
+            var finalFlashline = flashlineID.slice(0,positionOfAt);
+            
+            //removes walkin bar from calendar
+            $("#ul_" + finalFlashline).remove();
+
+            //sends alert to all subscribers that student was returned to queue
+            alertHubProx.server.studentReturnedQueue(finalFlashline, " was placed back into the walkin queue");
+
+            //ajax call toput student back in database table
+            var url = '@Url.Action("ReturnStudentToQueue")';
+            $.ajax(
+            {
+                url: url,
+                type: 'POST',
+                data: {'studentFlashlineID': finalFlashline},
+                success: function (data) {
+                    $.jGrowl("You have successfully placed "+finalFlashline+" back in the queue", { life: 2500, theme: 'walkinAvailibility' });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+        }
 </script>
 }
 
@@ -302,6 +343,21 @@
         font-size: 1em;
     }
 
+    .walkinPanel{
+        border: 5px solid #009DDB;
+    }
+
+    .walkinPanel > .cta-button > a {
+        background-color:#009DDB; 
+    }
+
+    .walkinPanel > .title{
+        background-color:#002664;
+    }
+    .walkinPanel > .price {
+        font-size: 1em;
+    }
+    
     /* admin only section */
     .button {
         background-color: #F9B71B;
@@ -314,6 +370,18 @@
     /* resizing icons*/
     .fi-checkbox{
         font-size: 25px;
+    }
+    /* styling icons*/
+    .fi-trash:hover{
+        cursor:pointer;
+    }
+
+    /* foot classes*/
+    .inactive_foot{
+        color:red!important;
+    }
+    .active_foot{
+        color:green!important;
     }
 </style>
 
@@ -331,7 +399,7 @@
         <i class="fi-torsos"></i>
     </a>
     <a id="walkin_button" class="item">
-        <i class="fi-foot"></i>
+        <i class="fi-foot inactive_foot"></i>
     </a>
     <!--<a id = "administrator_options" class = "item">
       <i class = "fi-widget"></i>
@@ -388,6 +456,12 @@
         </fieldset>
     </div>
     <div id="appointment_schedule" style="display:none;" class="medium-8 text-center medium-centered columns">
+        <div id="grabbed_walkin_appointments">
+
+        </div>
+        <div id="walkinDivider" style="width: 100%; margin-top: 30px; margin-bottom: 30px; border-bottom: 3px solid black;" class="medium-8 medium-centered columns">
+
+        </div>
         <ul class="pricing-table appointmentPanel">
             <li class="title">Jane Doe</li>
             <li class="price">jdoe@kent.edu</li>

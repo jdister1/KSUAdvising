@@ -23,6 +23,11 @@ namespace KSUAdvising.Hubs
             Clients.All.removeStudentFromQueue(name, message);
         }
 
+        public void StudentReturnedQueue(string name, string message)
+        {
+            Clients.All.returnStudentToQueue(name, message);
+        }
+
         public void AdviserInQueue(string name, string message)
         {
             Clients.All.addAdviserInQueue(name, message);
