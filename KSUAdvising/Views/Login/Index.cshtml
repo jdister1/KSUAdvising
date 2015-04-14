@@ -33,8 +33,10 @@
         }
 
         //click handler for college selection
-        $("#collegeDrop > li").click(function(){
-            setCollege($(this)[0].id);
+        $("#collegeOptions > li > a").click(function(){
+            if (confirm("Are you sure you want to set "+$(this).text()+" as the college?") == true) {
+                setCollege(this.id);
+            }             
         });
     });
 
@@ -42,11 +44,11 @@
         //adds all colleges to list
         for(var i = 0; i < numColleges; ++i)
         {
-            $("#collegeDrop").append("<li id='"+(i + 1) +"'>"+collegeList[i]+"</li>");
+            $("#collegeOptions").append("<li><a id='"+(i + 1) +"' class='button'>"+collegeList[i]+"</a></li>");
         }
         $.blockUI({
             message:$("#chooseCollegeColorBox"),
-            css: { backgroundColor: '#F9B71B'}
+            css: { backgroundColor: '#F9B71B'},
         });
     }
 
@@ -96,14 +98,16 @@
     #usernameError{
        background-color: #9E3039;
     }
-    
+    .login_header img{
+        width: 100px !important;
+    }
 </style>
 
    <!-- Start of Layout Skeleton-->
 <div id="navbar" class="icon-bar three-up">
 
     <a id="home_button" class="item">
-        <span class="login_header">KSU Advising</span>
+        <span class="login_header"><img src="~/Content/ksu_logo.png"/></span>
     </a>
     <a>
     </a>
@@ -140,12 +144,17 @@
 
 </div>
 
-<div id="chooseCollegeColorBox" style="display:none; padding:20px;">
+<div id="chooseCollegeColorBox" style="display:none; padding:5px; ">
     <form id="submiteCollege" action="Login/SetCollege" data-abide>
-        <button id="collegeDropButton" data-dropdown="collegeDrop" aria-controls="drop" , aria-expanded="false" class="large button dropdown">Select College</button><br>
-        <ul id="collegeDrop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1"></ul>
-        <input name="collegeID" id="selectedCollege" type="text" style="display:none;" />
+        @*<div id="collegeOptions">
+        </div>
+        *@
 
+
+        <ul id="collegeOptions" class="stack button-group">
+
+        </ul>
+        <input name="collegeID" id="selectedCollege" type="text" style="display:none;" />
      </form>
 </div>
 <!-- End of layout skeleton -->

@@ -41,3 +41,5 @@ C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\M
 C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\obj\Release\KSUAdvising.csprojResolveAssemblyReference.cache
 C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\EntityFramework.SqlServer.dll
 C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\EntityFramework.SqlServer.xml
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\RestSharp.dll
+C:\Users\joe\Documents\Visual Studio 2013\Projects\KSUAdvising\KSUAdvising\bin\RestSharp.xml

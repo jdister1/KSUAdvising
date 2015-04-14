@@ -1,4 +1,6 @@
 ﻿using KSUAdvising.Models;
+using RestSharp;
+using RestSharp.Deserializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,18 +31,54 @@ namespace KSUAdvising.Controllers
             context.SaveChanges();
             
             AdviserViewModel AdviserVM = new AdviserViewModel();
+
             //populates view model with adviser information
             AdviserVM.Adviser = LoggedInUser;
-            AdviserVM.CollegeSetting = context.CollegeSettings.FirstOrDefault(c => c.CollegeID == AdviserVM.Adviser.CollegeID);
+
+            var collegeID = (int)Session["collegeID"];
+            AdviserVM.CollegeSetting = context.CollegeSettings.FirstOrDefault(c => c.CollegeID == collegeID);
 
             //checks if adviser is also admin 
             //AdviserVM.isAdmin      if(context.Admins.FirstOrDefault(ad => ad.BannerID == LoggedInUser.BannerID))
 
+            //populates with available for walkin in case set by administrator
+            AdviserVM.isWalkinAtLogin = AdviserVM.Adviser.WalkinAdviser;
+
+            //populates with appointment data
+            AdviserVM.appointmentData = getTodaysAppointments(AdviserVM.Adviser.FlashlineID);
 
             //populates view model with existing walkins in queue before login
             AdviserVM.currentWalkinQueueFlashline = context.WalkinQueue.Select(w => w.FlashlineID).ToList();
 
             return View(AdviserVM);
+        }
+
+        private List<Appointment> getTodaysAppointments(string flashlineID)
+        {
+            //what will get returend
+            List<Appointment> returnAppointments;
+
+            //makes api call
+            var collegeID = (int)Session["collegeID"];
+            string requestText = "/AppointmentByGroup?groupID=" + collegeID + "&date=02/13/2014";
+            var client = new RestClient("http://ssdev-01.kent.edu/KSUAdvising_WebServices/api/AdvisingApi");
+            var request = new RestRequest(requestText, Method.POST);
+
+            //deserializes JSON into Appointment objects
+            IRestResponse response = client.Execute(request);
+            RestSharp.Deserializers.JsonDeserializer deserial = new JsonDeserializer();
+            returnAppointments  = deserial.Deserialize<List<Appointment>>(response);
+
+            //filters out for this adviser only
+            returnAppointments = returnAppointments.Where(appt => appt.AdvisorFlashlineID == flashlineID).ToList();
+
+            //changes time format for recieved appointments
+            foreach(var appt in returnAppointments)
+            {
+                var tempDate = Convert.ToDateTime(appt.AppointmentStartTime);
+                appt.AppointmentStartTime = tempDate.ToShortTimeString();
+            }
+            return returnAppointments;
         }
 
         [HttpPost]

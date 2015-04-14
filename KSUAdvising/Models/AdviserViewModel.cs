@@ -9,7 +9,9 @@ namespace KSUAdvising.Models
     {
         public Adviser Adviser { get; set; }
         public bool isAdmin { get; set; }
+        public bool isWalkinAtLogin { get; set; }
         public CollegeSetting CollegeSetting { get; set; }
         public List<String> currentWalkinQueueFlashline { get; set; }
+        public List<Appointment> appointmentData { get; set; }
     }
 }

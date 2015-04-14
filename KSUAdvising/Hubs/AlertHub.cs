@@ -8,9 +8,11 @@ namespace KSUAdvising.Hubs
 {
     public class AlertHub : Hub
     {
-        public void AppointmentArrival(string name, string message)
+        public void AppointmentArrival(string studentFlashlineID, string adviserFlashlineID)
         {
-            Clients.All.addAppointmentArrivalNotification(name, message);
+            //gets appointment arrival time
+            string arrivalTime = DateTime.Now.ToShortTimeString();
+            Clients.All.addAppointmentArrivalNotification(studentFlashlineID, adviserFlashlineID, arrivalTime);
         }
 
         public void StudentInQueue(string name, string message)
@@ -18,9 +20,9 @@ namespace KSUAdvising.Hubs
             Clients.All.addStudentInQueue(name, message);
         }
 
-        public void StudentOutQueue(string name, string message)
+        public void StudentOutQueue(string studentFlashlineID,string adviserFlashlineID, string message)
         {
-            Clients.All.removeStudentFromQueue(name, message);
+            Clients.All.removeStudentFromQueue(studentFlashlineID,adviserFlashlineID, message);
         }
 
         public void StudentReturnedQueue(string name, string message)
@@ -35,6 +37,16 @@ namespace KSUAdvising.Hubs
         public void AdviserOutQueue(string name, string message)
         {
             Clients.All.removeAdviserFromQueue(name, message);
+        }
+
+        public void ForceAdviserInQueue(string name, string message)
+        {
+            Clients.All.forceAddAdviserInQueue(name, message);
+        }
+
+        public void ForceAdviserOutQueue(string name, string message)
+        {
+            Clients.All.forceRemoveAdviserFromQueue(name, message);
         }
     }
 }

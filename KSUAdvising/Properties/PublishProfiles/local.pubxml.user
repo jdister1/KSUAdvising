@@ -28,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2015 16:13:38</publishTime>
     </File>
     <File Include="bin/KSUAdvising.dll">
-      <publishTime>03/09/2015 23:13:06</publishTime>
+      <publishTime>04/14/2015 11:00:12</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
       <publishTime>02/22/2015 14:07:43</publishTime>
@@ -53,6 +53,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>02/22/2015 14:07:43</publishTime>
+    </File>
+    <File Include="bin/RestSharp.dll">
+      <publishTime>03/12/2015 12:11:44</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>03/02/2015 16:13:39</publishTime>
@@ -108,6 +111,177 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/WebGrease.dll">
       <publishTime>02/21/2015 00:48:47</publishTime>
     </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.autoFill.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.autoFill.min.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.bootstrap.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.colReorder.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.colReorder.min.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.colVis.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.colvis.jqueryui.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.colVis.min.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.fixedColumns.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.fixedColumns.min.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.fixedHeader.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.fixedHeader.min.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.foundation.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.jqueryui.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.jqueryui.scss">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.keyTable.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.keyTable.min.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.responsive.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.responsive.scss">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.scroller.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.scroller.min.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.tableTools.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/dataTables.tableTools.min.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/jquery.dataTables.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/jquery.dataTables.min.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/css/jquery.dataTables_themeroller.css">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/background.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/back_disabled.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/back_enabled.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/back_enabled_hover.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/collection.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/collection_hover.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/copy.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/copy_hover.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/csv.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/csv_hover.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/details_close.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/details_open.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/filler.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/forward_disabled.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/forward_enabled.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/forward_enabled_hover.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/insert.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/loading-background.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/pdf.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/pdf_hover.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/print.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/print_hover.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/sort_asc.png">
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/sort_asc_disabled.png">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/sort_both.png">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/sort_desc.png">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/sort_desc_disabled.png">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/xls.png">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/images/xls_hover.png">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/swf/copy_csv_xls.swf">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.10.4/swf/copy_csv_xls_pdf.swf">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
     <File Include="Content/foundation-icons/.fontcustom-data">
       <publishTime>02/21/2015 12:12:39</publishTime>
     </File>
@@ -140,6 +314,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/jquery.jgrowl.min.css">
       <publishTime>02/22/2015 13:20:57</publishTime>
+    </File>
+    <File Include="Content/ksu_logo.png">
+      <publishTime>04/04/2015 00:42:36</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>02/21/2015 01:07:03</publishTime>
@@ -322,7 +499,76 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:48:27</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>03/02/2015 18:35:13</publishTime>
+      <publishTime>03/19/2015 01:00:41</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.autoFill.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.autoFill.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.bootstrap.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.colReorder.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.colReorder.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.colVis.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.colVis.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.fixedColumns.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.fixedColumns.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.fixedHeader.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.fixedHeader.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.foundation.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.jqueryui.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.keyTable.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.keyTable.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.responsive.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.responsive.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.scroller.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.scroller.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.tableTools.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/dataTables.tableTools.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/jquery.dataTables.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.10.4/jquery.dataTables.min.js">
+      <publishTime>03/19/2015 01:00:40</publishTime>
     </File>
     <File Include="Scripts/foundation/fastclick.js">
       <publishTime>02/21/2015 00:58:30</publishTime>
@@ -441,11 +687,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/_references.js">
       <publishTime>02/21/2015 00:48:43</publishTime>
     </File>
+    <File Include="Views/Admin/Index.cshtml">
+      <publishTime>04/14/2015 10:02:34</publishTime>
+    </File>
     <File Include="Views/AdministrativeAssistant/Index.cshtml">
-      <publishTime>03/09/2015 23:43:41</publishTime>
+      <publishTime>04/14/2015 09:17:31</publishTime>
     </File>
     <File Include="Views/Adviser/Index.cshtml">
-      <publishTime>03/09/2015 23:41:31</publishTime>
+      <publishTime>04/14/2015 11:00:05</publishTime>
     </File>
     <File Include="Views/Advisor/Index.cshtml">
       <publishTime>02/24/2015 20:23:57</publishTime>
@@ -454,16 +703,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:58:34</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>03/08/2015 00:58:11</publishTime>
+      <publishTime>04/14/2015 10:55:26</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/21/2015 00:48:27</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>03/08/2015 01:18:04</publishTime>
+      <publishTime>03/19/2015 01:29:42</publishTime>
     </File>
     <File Include="Views/Student/Index.cshtml">
-      <publishTime>03/09/2015 23:44:19</publishTime>
+      <publishTime>03/17/2015 22:53:14</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>02/21/2015 00:48:27</publishTime>
@@ -472,7 +721,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:48:27</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/09/2015 23:13:08</publishTime>
+      <publishTime>04/07/2015 11:38:10</publishTime>
     </File>
   </ItemGroup>
 </Project>

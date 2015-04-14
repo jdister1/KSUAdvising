@@ -29,7 +29,8 @@
 
         if(hasAppointment && !isLate)
         {
-            appointmentArrivedOnTime(studentName, adviserName);
+            //display on time message
+            appointmentArrivedOnTime(studentName, flashlineID, adviserName, adviserFlashlineID);
         }
         if(hasAppointment && isLate)
         {
@@ -45,12 +46,21 @@
             //});
     });
 
-    function appointmentArrivedOnTime(studentName, adviserName){
+    function appointmentArrivedOnTime(studentName, flashlineID, adviserName, adviserFlashlineID){
         $.blockUI({
-            message: "<h2>Thank you <b>" + studentName + "</b>, <b>"+ adviserName +"</b> be with you shortly.</h2>",
-            css: { backgroundColor: '#F9B71B'},
-            timeout: 6000
+            message: "Thank you <b>" + studentName + "</b> <br/><br/> <b>"+ adviserName +"</b> will be with you shortly.",
+            css: { backgroundColor: '#F9B71B'}
         });
+        setTimeout(function() { 
+            $.unblockUI({ 
+                onUnblock: function(){ 
+                    $("#submitAfterAppointment").submit();
+                    
+                    //send out arrival alert
+                    alertHubProx.server.appointmentArrival(flashlineID, adviserFlashlineID);
+                } 
+            }); 
+        }, 4000); 
     }
 
     function appointmentArrivedLate(studentName, adviserName){
@@ -96,7 +106,7 @@
 
 <div id="no_appointment" style="display:none" class="large-4 large-centered columns">
     <div class="panel">
-            <h2>Hi, @Model.studentName</h2>
+            <h2>Hi, @Model.flashlineID</h2>
             <p>Click E-mail a Link to recieve an E-mail with a URL to KSU's Advising website to schedule an appointment. This will automatically log you out of the system.
                @if (Model.walkinsAllowed)
                {
@@ -140,4 +150,5 @@
 
 <form id="submitAfterQueue" action="@Url.Action("AddStudentToQueue", "Login")" style="display:none">
 </form>
-
+<form id="submitAfterAppointment" action="@Url.Action("Index","Login")" style="display:none">
+</form>

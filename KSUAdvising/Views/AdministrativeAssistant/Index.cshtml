@@ -21,6 +21,17 @@
             alertHubProx.client.removeAdviserFromQueue = function (name, message) {
                 $.jGrowl(name + " " + message, { life: 2500, theme: 'walkinAvailibility' });
                 removeAdviserQueue(name);
+            };
+
+            //attaches event handlers for advisers in and out of walkin queue FROM ADMINISTRATOR
+            alertHubProx.client.forceAddAdviserInQueue= function (name, message) {
+                $.jGrowl(name + " " + message, { life: 2500, theme: 'walkinAvailibility' });
+                addAdviserQueue(name);
+            };
+
+            alertHubProx.client.forceRemoveAdviserFromQueue = function(name, message){
+                $.jGrowl(name + " " + message, { life: 2500, theme: 'walkinAvailibility' });
+                removeAdviserQueue(name);
             }
 
             //attaches an event handler for students in,out, and returned towalkin queue
@@ -32,11 +43,21 @@
                 $.jGrowl(name + " " + message, { life: 2500, theme: 'walkinAvailibility' });
                 addStudentToQueue(name);
             }
-            alertHubProx.client.removeStudentFromQueue = function (name, message) {
-                $.jGrowl(name + " " + message, { life: 2500, theme: 'walkinAvailibility' });
-                removeStudentQueue(name);
+            alertHubProx.client.removeStudentFromQueue = function (studentFlashlineID,adviserFlashlineID, message) {
+                $.jGrowl(studentFlashlineID + " " + message, { life: 2500, theme: 'walkinAvailibility' });
+                removeStudentQueue(studentFlashlineID);
             }
 
+            //puts advising data in table
+            var todaysAppointments = @Html.Raw(JsonConvert.SerializeObject(Model.appointmentData));
+
+            for(var i = 0; i < todaysAppointments.length; ++i)
+            {
+                var rowText = "<tr><td>" + todaysAppointments[i].AdvisorFlashlineID + "</td><td>"+todaysAppointments[i].AdvisorFirstName + "</td><td>" + todaysAppointments[i].AdvisorLastName + "</td><td>" +todaysAppointments[i].StudentFlashlineID + "</td><td>" + todaysAppointments[i].StudentFirstName + "</td><td>" + todaysAppointments[i].StudentLastName+ "</td><td>" + todaysAppointments[i].AppointmentStartTime+ "</td><td>" + todaysAppointments[i].AppointmentEndTime + "</td></tr>";
+                $("#appointmentTable tbody").append(rowText);
+            }
+            $('#appointmentTable').dataTable();
+            
             //seeds existing walkin users
             var existingWalkin = @Html.Raw(JsonConvert.SerializeObject(Model.currentWalkinQueueFlashline));
             for(var i = 0; i < existingWalkin.length; ++i)
@@ -165,9 +186,24 @@
         Home with settings
     </div>
 
-    <div id="appointment_schedule" style="display:none;" class="medium-8 text-center medium-centered columns">
-        table with all appointments
-    </div>
+    <div id="appointment_schedule" style="display:none;" class="medium-12 columns">
+        <table id="appointmentTable" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Adviser ID</th>
+                    <th>Adviser First Name</th>
+                    <th>Adviser Last Name</th>
+                    <th>Student ID</th>
+                    <th>Student First Name</th>
+                    <th>Student Last Name</th>
+                    <th>Appointment Start</th>
+                    <th>Appointment End</th>
+                </tr>
+            </thead>
+            <tbody>
+           </tbody>
+       </table>
+</div>
 
     <div id="walkin_student_queue" style="display:none;" class="small-11 small-centered columns">
         <dl class="sub-nav">
