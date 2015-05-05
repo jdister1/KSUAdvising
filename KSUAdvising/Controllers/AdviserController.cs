@@ -60,7 +60,7 @@ namespace KSUAdvising.Controllers
 
             //makes api call
             var collegeID = (int)Session["collegeID"];
-            string requestText = "/AppointmentByGroup?groupID=" + collegeID + "&date=02/13/2014";
+            string requestText = "/AppointmentByGroup?groupID=" + collegeID + "&date=02/24/2014";
             var client = new RestClient("http://ssdev-01.kent.edu/KSUAdvising_WebServices/api/AdvisingApi");
             var request = new RestRequest(requestText, Method.POST);
 

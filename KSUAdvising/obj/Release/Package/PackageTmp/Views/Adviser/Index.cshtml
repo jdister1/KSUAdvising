@@ -26,7 +26,7 @@
                 playAlert();
 
                 //adds arrival time
-                $("#ul_appt_"+studentFlashlineID).find(".arrivalTime").text(arrivalTime);
+                $("#ul_appt_"+studentFlashlineID).find(".arrivalTime").text("Arrival Time: " + arrivalTime);
 
                 //changes div style
                 $("#ul_appt_"+studentFlashlineID).addClass("arrived");
@@ -118,7 +118,7 @@
 
         for(var i = 0; i < todaysAppointments.length; ++i)
         {
-            var priceInsertText = "<ul id='ul_appt_"+todaysAppointments[i].StudentFlashlineID+"' class='pricing-table appointmentPanel'><li class='title'>"+todaysAppointments[i].StudentFirstName + " " + todaysAppointments[i].StudentLastName+"<i class='fi-arrows-compress right'></i></li><li class='price'>"+todaysAppointments[i].AppointmentStartTime+"</li><li class='bullet-item collapsible'>"+todaysAppointments[i].StudentFlashlineID+"</li><li class='bullet-item collapsible arrivalTime'>N/A</li><li class='cta-button collapsible'><a class='button ' href='#'>No Show</a></li></ul>";
+            var priceInsertText = "<ul id='ul_appt_"+todaysAppointments[i].StudentFlashlineID+"' class='pricing-table appointmentPanel'><li class='title'>"+todaysAppointments[i].StudentFirstName + " " + todaysAppointments[i].StudentLastName+"<i class='fi-arrows-compress right'></i></li><li class='price'>Appointment Time: "+todaysAppointments[i].AppointmentStartTime+"</li><li class='bullet-item collapsible'>Flashline ID: "+todaysAppointments[i].StudentFlashlineID+"</li><li class='bullet-item collapsible arrivalTime'><i>Not Yet Arrived</i> </li><li class='cta-button collapsible'><a class='button ' href='#'>No Show</a></li></ul>";
             $("#appointment_schedule").append(priceInsertText);
             //compresses apointment by default
             compressAppointment("ul_appt_"+todaysAppointments[i].StudentFlashlineID);
@@ -374,9 +374,6 @@
         //remove from our list
         $("#li_" + flashlineID).remove();
 
-        //call hub function to remove student from walkin queueue for other clients
-        alertHubProx.server.studentOutQueue(flashlineID, instanceAdviserFlashlineID, " was grabbed from queue by an adviser");
-
         //ajax call to remove from database table
         var url = '@Url.Action("RemoveStudentFromWalkin")';
         $.ajax(
@@ -386,6 +383,8 @@
             data: {'studentFlashlineID': flashlineID},
             success: function (data) {
                 $.jGrowl("You have successfully grabbed "+flashlineID+" from the queue", { life: 2500, theme: 'walkinAvailibility' });
+                //call hub function to remove student from walkin queueue for other clients
+                alertHubProx.server.studentOutQueue(flashlineID, instanceAdviserFlashlineID, " was grabbed from queue by an adviser");
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
@@ -433,6 +432,9 @@
 }
 
 <style>
+    #logout_button{
+        background-color:#9e2345 !important;
+    }
 
     .alert{
         background-color:#132B8B !important;
@@ -446,7 +448,7 @@
         border: 5px solid #CCCCCC !important;
     }
     .arrived> .title{
-        background-color:#9e2345 !important;
+        background-color:#879637!important;
     }
 
     .appointment_panel_x {
@@ -510,22 +512,21 @@
 
 <!-- top nav -->
 <div id="navbar" class="icon-bar four-up">
+    
+        <a id="home_button" class="item">
+            <i class="fi-home iconActive"></i>
+        </a>    
 
-    <a id="home_button" class="item">
-        <i class="fi-home iconActive"></i>
-    </a>
-    <a id="appointment_button" class="item">
-        <i class="fi-calendar"></i>
-    </a>
-    <a id="queue_button" class="item">
-        <i class="fi-torsos"></i>
-    </a>
-    <a id="walkin_button" class="item">
-        <i class="fi-foot inactive_foot"></i>
-    </a>
-    <!--<a id = "administrator_options" class = "item">
-      <i class = "fi-widget"></i>
-    </a>-->
+        <a id="appointment_button" class="item">
+                <i class="fi-calendar"></i>
+        </a>
+        <a id="queue_button" class="item">
+                <i class="fi-torsos"></i>
+        </a>
+        <a id="walkin_button" class="item">
+                <i class="fi-foot inactive_foot"></i>
+        </a>
+
 </div>
 <!-- end top nav -->
 
@@ -572,15 +573,15 @@
             </div><br /><br />
             <a id="test_sound_button" class="button alert"><span class="show-for-medium-up">Test Volume</span> <i class="fi-sound"></i></a>
             <audio id="alert_sound" src="~/Content/sounds/music_marimba_chord.wav"></audio>
-            <br/><br/>
+            
 
-            <a id="save_changes_button" onClick="submitAdviserSettingChanges()" class="button alert"><span class="show-for-medium-up">Save changes</span> <i class="fi-lock"></i></a>
+            <a id="save_changes_button" onClick="submitAdviserSettingChanges()" class="button alert"><span class="show-for-medium-up">Save changes</span> <i class="fi-save"></i></a>
             <br/><br/>
             @if (Model.Adviser.FlashlineID == "jdrake")//(Model.isAdmin)
             {
                 <a id="loginAsAdmin" href='@Url.Action("Index","Admin")' class="button alert"><span class="show-for-medium-up">Login as Admin </span> <i class="fi-shield"></i></a>
             }
-            
+            <a id="logout_button" href='@Url.Action("Index","Login")'  class="button alert"><span class="show-for-medium-up">Logout</span> <i class="fi-power"></i></a>
         </fieldset>
     </div>
 

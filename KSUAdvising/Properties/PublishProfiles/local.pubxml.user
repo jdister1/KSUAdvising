@@ -28,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2015 16:13:38</publishTime>
     </File>
     <File Include="bin/KSUAdvising.dll">
-      <publishTime>04/14/2015 11:00:12</publishTime>
+      <publishTime>04/30/2015 23:26:51</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
       <publishTime>02/22/2015 14:07:43</publishTime>
@@ -499,7 +499,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:48:27</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>03/19/2015 01:00:41</publishTime>
+      <publishTime>04/14/2015 11:25:11</publishTime>
+    </File>
+    <File Include="Scripts/Chart.js">
+      <publishTime>04/14/2015 11:25:11</publishTime>
+    </File>
+    <File Include="Scripts/Chart.min.js">
+      <publishTime>04/14/2015 11:25:10</publishTime>
     </File>
     <File Include="Scripts/DataTables-1.10.4/dataTables.autoFill.js">
       <publishTime>03/19/2015 01:00:40</publishTime>
@@ -688,13 +694,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:48:43</publishTime>
     </File>
     <File Include="Views/Admin/Index.cshtml">
-      <publishTime>04/14/2015 10:02:34</publishTime>
+      <publishTime>04/30/2015 23:53:19</publishTime>
     </File>
     <File Include="Views/AdministrativeAssistant/Index.cshtml">
-      <publishTime>04/14/2015 09:17:31</publishTime>
+      <publishTime>04/30/2015 10:51:56</publishTime>
     </File>
     <File Include="Views/Adviser/Index.cshtml">
-      <publishTime>04/14/2015 11:00:05</publishTime>
+      <publishTime>04/30/2015 23:21:20</publishTime>
     </File>
     <File Include="Views/Advisor/Index.cshtml">
       <publishTime>02/24/2015 20:23:57</publishTime>
@@ -703,7 +709,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:58:34</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>04/14/2015 10:55:26</publishTime>
+      <publishTime>04/30/2015 10:12:22</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/21/2015 00:48:27</publishTime>
@@ -721,7 +727,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2015 00:48:27</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/07/2015 11:38:10</publishTime>
+      <publishTime>04/14/2015 11:38:25</publishTime>
     </File>
   </ItemGroup>
 </Project>

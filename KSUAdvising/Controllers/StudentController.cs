@@ -42,7 +42,7 @@ namespace KSUAdvising.Controllers
             var collegeInformation = context.CollegeSettings.FirstOrDefault(c => c.CollegeID == collegeID);
             bool adviserCanChange = collegeInformation.CanAdvisorChange;
             int minLate, minEarly;
-            if(adviserCanChange)
+            if(adviserCanChange && StudentVM.hasAppointment)
             {
                 minLate = context.Advisers.FirstOrDefault(a => a.FlashlineID == StudentVM.adviserFlashlineID).MinuteAllowedLate;
             }
@@ -68,7 +68,7 @@ namespace KSUAdvising.Controllers
 
             //makes api call
             var collegeID = (int)Session["collegeID"];
-            string requestText = "/AppointmentByGroup?groupID=" + collegeID + "&date=09/26/2014";;
+            string requestText = "/AppointmentByGroup?groupID=" + collegeID + "&date=02/24/2014";;
             var client = new RestClient("http://ssdev-01.kent.edu/KSUAdvising_WebServices/api/AdvisingApi");
             var request = new RestRequest(requestText, Method.POST);
 

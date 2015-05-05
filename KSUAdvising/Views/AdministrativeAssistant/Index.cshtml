@@ -80,12 +80,12 @@
             }
 
             //show Home by Default
-            showPanel(0);
+            showPanel(1);
 
             //attaching event handlers to top buttons to show/hide correct panels
-            $("#home_button").click(function () {
-                switchLayout(0);
-            });
+            //$("#home_button").click(function () {
+            //    switchLayout(0);
+            //});
 
             $("#appointment_button").click(function () {
                 switchLayout(1);
@@ -126,7 +126,7 @@
             //based on what integer is passed hide other panels and show correct one
             var panels = ["#home_panel", "#appointment_schedule", "#walkin_student_queue", "#walkin_adviser_queue"];
             var buttons = ["#home_button i", "#appointment_button i", "#student_queue_button i","#adviser_queue_button i"];
-            for (var i = 0; i < 4; ++i) {
+            for (var i = 1; i < 4; ++i) {
                 if (panel != i) {
                     $(panels[i]).css("display", "none");
                     $(buttons[i]).removeClass("iconActive");
@@ -164,13 +164,18 @@
 
     </script>
 }
-<div id="navbar" class="icon-bar four-up">
+<style>
+     #logout_button{
+        background-color:#9e2345 !important;
+    }
+</style>
+<div id="navbar" class="icon-bar three-up">
 
-    <a id="home_button" class="item">
+    @*<a id="home_button" class="item">
         <i class="fi-home iconActive"></i>
-    </a>
+    </a>*@
     <a id="appointment_button" class="item">
-        <i class="fi-calendar"></i>
+        <i class="fi-calendar iconActive"></i>
     </a>
     <a id="student_queue_button" class="item">
         <i class="fi-torsos"></i>
@@ -182,9 +187,9 @@
 
 <div class="row">
     
-    <div id="home_panel" class="small-11 small-centered columns">
+    @*<div id="home_panel" class="small-11 small-centered columns">
         Home with settings
-    </div>
+    </div>*@
 
     <div id="appointment_schedule" style="display:none;" class="medium-12 columns">
         <table id="appointmentTable" class="display" cellspacing="0" width="100%">
@@ -203,6 +208,9 @@
             <tbody>
            </tbody>
        </table>
+
+        <br/><br/>
+        <a id="logout_button" href='@Url.Action("Index","Login")' class="button alert"><span class="show-for-medium-up">Logout</span> <i class="fi-power"></i></a>
 </div>
 
     <div id="walkin_student_queue" style="display:none;" class="small-11 small-centered columns">

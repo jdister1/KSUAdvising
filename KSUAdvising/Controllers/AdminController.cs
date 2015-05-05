@@ -18,9 +18,16 @@ namespace KSUAdvising.Controllers
             //instantiates adviser view model
             AdminViewModel adVm = new AdminViewModel();
 
-            //gets current adviser
-            //**WILL BE IMPLEMENTED ONCE LOGIN THING IS
-
+            //checks if proper user logged in
+            if (Session["LoggedInAdviser"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                //var currentAdviser = context.Advisers.FirstOrDefault(a => a.FlashlineID == Session["LoggedInAdviser"].ToString());
+                //adVm.Adviser = currentAdviser;
+            }
             //gets college ID session variable
             var collegeID = (int)Session["collegeID"];
             adVm.CollegeSetting = context.CollegeSettings.FirstOrDefault(c => c.CollegeID == collegeID);

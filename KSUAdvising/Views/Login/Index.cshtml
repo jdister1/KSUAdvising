@@ -44,7 +44,7 @@
         //adds all colleges to list
         for(var i = 0; i < numColleges; ++i)
         {
-            $("#collegeOptions").append("<li><a id='"+(i + 1) +"' class='button'>"+collegeList[i]+"</a></li>");
+            $("#collegeOptions").append("<li><a id='"+(i + 1) +"' class='button show-for-medium-up'>"+collegeList[i]+"</a><a id='"+(i + 1) +"' class='button tiny hide-for-medium-up'>"+collegeList[i]+"</a></li>");
         }
         $.blockUI({
             message:$("#chooseCollegeColorBox"),

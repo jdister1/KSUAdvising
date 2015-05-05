@@ -25,8 +25,9 @@ namespace KSUAdvising.Controllers
             //seeds data of some colleges and some advisors in case data store changes
             //seedData();
 
-            //resets the logged in student
+            //resets session variables
             Session["LoggedInStudent"] = null;
+            Session["LoggedInAdviser"] = null; 
 
             //view model
             LoginViewModel lvm = new LoginViewModel();
@@ -66,6 +67,8 @@ namespace KSUAdvising.Controllers
         [HttpGet]
         public ActionResult Authenticate(string userName,string password)
         {
+            userName = userName.ToLower();
+
             //send request to web service
             string requestText = "/Authenticate?flashlineID=" + userName + "&password=" + password;
             var client = new RestClient("http://ssdev-01.kent.edu/KSUAdvising_WebServices/api/AdvisingApi");

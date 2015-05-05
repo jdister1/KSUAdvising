@@ -243,6 +243,8 @@
     <Content Include="Content\foundation\foundation.mvc.css" />
     <Content Include="Content\foundation\normalize.css" />
     <Content Include="Content\ksu_logo.png" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\DataTables-1.10.4\dataTables.autoFill.js" />
     <Content Include="Scripts\DataTables-1.10.4\dataTables.autoFill.min.js" />
     <Content Include="Scripts\DataTables-1.10.4\dataTables.bootstrap.js" />
